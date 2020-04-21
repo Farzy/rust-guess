@@ -60,8 +60,9 @@ fn main() {
         io::stdin()
             .read_line(&mut cont)
             .expect("Could not read from stdin");
-        match cont.trim().to_lowercase().chars().nth(0) {
+        match cont.chars().next() {
             Some('n') => break,
+            Some('N') => break,
             _ => (),
         }
     }
