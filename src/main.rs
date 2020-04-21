@@ -43,13 +43,26 @@ fn handle_guess(guess: u8, correct: u8) -> bool {
 
 fn main() {
     println!("Welcome to the guessing game!");
-    let correct = random::<u8>();
-    println!("Correct value is: {}", correct);
 
     loop {
-        let guess = get_guess();
-        if handle_guess(guess, correct) {
-            break;
+        let correct = random::<u8>();
+        //println!("Correct value is: {}", correct);
+
+        loop {
+            let guess = get_guess();
+            if handle_guess(guess, correct) {
+                break;
+            }
+        }
+
+        println!("Do you want to play again? Y/n:");
+        let mut cont = String::new();
+        io::stdin()
+            .read_line(&mut cont)
+            .expect("Could not read from stdin");
+        match cont.trim().to_lowercase().chars().nth(0) {
+            Some('n') => break,
+            _ => (),
         }
     }
 }
